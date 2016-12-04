@@ -1,8 +1,13 @@
 #!flask/bin/python
 from flask import Flask, render_template
 import RPi.GPIO as gpio
+import logging
 
 app = Flask(__name__)
+
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
+
 power = 16
 
 @app.route('/')
