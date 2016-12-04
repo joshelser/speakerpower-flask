@@ -1,5 +1,5 @@
 # Systemd configuration file for speakerpower
-# Place in /etc/systemd/system/
+# Place in /etc/systemd/system/ and run `systemctl enable speakerpower` to start on boot
 
 [Unit]
 Description=Speakerpower Flask App
