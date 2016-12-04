@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<title>SpeakerPower</title>
+		<script>
+		function on() {
+		  var xmlHttp = new XMLHttpRequest();
+		  xmlHttp.open("GET", "/on", false);
+		  xmlHttp.send(null);
+		  var resp = xmlHttp.responseText;
+		  set_state('On');
+		  return resp;
+		}
+		function off() {
+		  var xmlHttp = new XMLHttpRequest();
+		  xmlHttp.open("GET", "/off", false);
+		  xmlHttp.send(null);
+		  var resp = xmlHttp.responseText;
+		  set_state('Off');
+		  return resp;
+		}
+		function state() {
+		  var xmlHttp = new XMLHttpRequest();
+		  xmlHttp.open("GET", "/state", false);
+		  xmlHttp.send(null);
+		  return xmlHttp.responseText;
+		}
+		function set_state(text) {
+		  var state_span = document.getElementById("state");
+		  state_span.textContent = text;
+		}
+		window.onload = function() {
+		  var stateText = state();
+		  set_state(stateText);
+		}
+		</script>
+	</head>
+	<body>
+		<p>State: <span id="state">&nbsp;</span></p>
+		<p><button onclick="on()">On</button></p>
+		<p><button onclick="off()">Off</button></p>
+	</body>
+</html>
