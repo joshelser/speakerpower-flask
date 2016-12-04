@@ -1,0 +1,11 @@
+# Systemd configuration file for speakerpower
+# Place in /etc/systemd/system/
+
+[Unit]
+Description=Speakerpower Flask App
+
+[Service]
+ExecStart=/usr/local/bin/speakerpower-setup.sh
+
+[Install]
+WantedBy=default.target
