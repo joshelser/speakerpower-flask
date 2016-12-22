@@ -1,0 +1,7 @@
+check process speakerpower with pidfile /var/run/speakerpower.pid
+  start program = "/bin/bash -c 'systemctl start speakerpower.service'" with timeout 60 seconds
+  stop program  = "/bin/bash -c 'systemctl stop speakerpower.service'"
+  if failed host localhost port 80 protocol http
+     and request "/"
+  then restart
+  if 10 restarts within 10 cycles then timeout
