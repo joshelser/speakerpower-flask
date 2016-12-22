@@ -19,7 +19,7 @@ if [[ ! -d ${VIRTUALENV} ]]; then
     echo "Installing virtualenvironment"
     pushd $INSTALL_DIR
     virtualenv2 ${VIRTUALENV_BASENAME}
-    ./${VIRTUALENV_BASENAME}/bin/pip install flask RPi.GPIO
+    ./${VIRTUALENV_BASENAME}/bin/pip install flask RPi.GPIO gunicorn
     popd
 else
     echo "Virtualenvironment already set up"
@@ -27,4 +27,5 @@ fi
 
 echo "Starting application"
 cd ${INSTALL_DIR}
-FLASK_APP=speakerpower.py ./${VIRTUALENV_BASENAME}/bin/flask run --host=0.0.0.0 --port=80 >> /var/log/speakerpower.log 2>&1
+#FLASK_APP=speakerpower.py ./${VIRTUALENV_BASENAME}/bin/flask run --host=0.0.0.0 --port=80 >> /var/log/speakerpower.log 2>&1
+./${VIRTUALENV_BASENAME}/bin/gunicorn --bind 0.0.0.0:80 --pid /var/run/speakerpower.pid wsgi:app >> /var/log/speakerpower.log 2>&1
