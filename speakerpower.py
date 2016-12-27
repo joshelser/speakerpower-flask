@@ -35,13 +35,13 @@ def off():
 def status():
     return 'OK'
     
-#@app.before_first_request
-def setup(state):
+@app.before_first_request
+def setup():
     gpio.setwarnings(False)
     gpio.setmode(gpio.BOARD)
     gpio.setup(power, gpio.OUT)
     # Start with it off to avoid it being HIGH on automatic-start
-    gpio.output(power, state)
+    gpio.output(power, get_state())
 
 def set_state(state):
     with open(state_file, 'w') as f:
