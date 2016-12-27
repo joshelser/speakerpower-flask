@@ -46,16 +46,15 @@ def setup():
 def set_state(state):
     with open(state_file, 'w') as f:
         if gpio.LOW == state:
-            f.write(0)
+            f.write('0')
         else:
-            f.write(1)
+            f.write('1')
 
 def get_state():
     if not os.path.isfile(state_file):
         return gpio.LOW
     with open(state_file, 'r') as f:
-        byte = f.read(1)
-        if 1 == byte:
+        if '1' == f.read(1):
             return gpio.HIGH
         return gpio.LOW
 
