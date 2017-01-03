@@ -2,39 +2,39 @@
 	<head>
 		<title>SpeakerPower</title>
 		<script>
-		function on() {
-		  var xmlHttp = new XMLHttpRequest();
+    function on() {
+      var xmlHttp = new XMLHttpRequest();
       var basePath = window.location.pathname;
-		  xmlHttp.open("GET", basePath + "/on", false);
-		  xmlHttp.send(null);
-		  var resp = xmlHttp.responseText;
-		  set_state('On');
-		  return resp;
-		}
-		function off() {
-		  var xmlHttp = new XMLHttpRequest();
+      xmlHttp.open("GET", basePath + "/on", false);
+      xmlHttp.send(null);
+      var resp = xmlHttp.responseText;
+      set_state('On');
+      return resp;
+    }
+    function off() {
+      var xmlHttp = new XMLHttpRequest();
       var basePath = window.location.pathname;
-		  xmlHttp.open("GET", basePath + "/off", false);
-		  xmlHttp.send(null);
-		  var resp = xmlHttp.responseText;
-		  set_state('Off');
-		  return resp;
-		}
-		function state() {
-		  var xmlHttp = new XMLHttpRequest();
+      xmlHttp.open("GET", basePath + "/off", false);
+      xmlHttp.send(null);
+      var resp = xmlHttp.responseText;
+      set_state('Off');
+      return resp;
+    }
+    function state() {
+      var xmlHttp = new XMLHttpRequest();
       var basePath = window.location.pathname;
-		  xmlHttp.open("GET", basePath + "/state", false);
-		  xmlHttp.send(null);
-		  return xmlHttp.responseText;
-		}
-		function set_state(text) {
-		  var state_span = document.getElementById("state");
-		  state_span.textContent = text;
-		}
-		window.onload = function() {
-		  var stateText = state();
-		  set_state(stateText);
-		}
+      xmlHttp.open("GET", basePath + "/state", false);
+      xmlHttp.send(null);
+      return xmlHttp.responseText;
+    }
+    function set_state(text) {
+      var state_span = document.getElementById("state");
+      state_span.textContent = text;
+    }
+    window.onload = function() {
+      var stateText = state();
+      set_state(stateText);
+    }
 		</script>
 	</head>
 	<body>
