@@ -4,7 +4,8 @@
 		<script>
 		function on() {
 		  var xmlHttp = new XMLHttpRequest();
-		  xmlHttp.open("GET", "/on", false);
+      var basePath = window.location.pathname;
+		  xmlHttp.open("GET", basePath + "/on", false);
 		  xmlHttp.send(null);
 		  var resp = xmlHttp.responseText;
 		  set_state('On');
@@ -12,7 +13,8 @@
 		}
 		function off() {
 		  var xmlHttp = new XMLHttpRequest();
-		  xmlHttp.open("GET", "/off", false);
+      var basePath = window.location.pathname;
+		  xmlHttp.open("GET", basePath + "/off", false);
 		  xmlHttp.send(null);
 		  var resp = xmlHttp.responseText;
 		  set_state('Off');
@@ -20,7 +22,8 @@
 		}
 		function state() {
 		  var xmlHttp = new XMLHttpRequest();
-		  xmlHttp.open("GET", "/state", false);
+      var basePath = window.location.pathname;
+		  xmlHttp.open("GET", basePath + "/state", false);
 		  xmlHttp.send(null);
 		  return xmlHttp.responseText;
 		}
