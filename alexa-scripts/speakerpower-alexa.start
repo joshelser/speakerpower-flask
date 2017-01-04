@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+source /etc/conf.d/speakerpower
+
+pushd /usr/local/speakerpower-flask/
+mkdir -p /var/run/speakerpower
+chgrp nobody /var/run/speakerpower
+chmod g+w /var/run/speakerpower
+sudo -u nobody password=${SPEAKERPOWER_PASSWORD} ./venv/bin/gunicorn --bind 127.0.0.1:2800 --pid /var/run/speakerpower/speakerpower-alexa.pid alexa-wsgi:app &>/var/log/speakerpower-alexa.log &
+popd

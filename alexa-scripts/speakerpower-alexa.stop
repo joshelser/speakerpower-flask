@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+if [[ -f /var/run/speakerpower/speakerpower-alexa.pid ]]; then
+  kill $(cat /var/run/speakerpower/speakerpower-alexa.pid)
+fi
