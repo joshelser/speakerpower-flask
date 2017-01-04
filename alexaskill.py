@@ -2,7 +2,7 @@
 
 from flask import Flask, render_template, request
 from flask_ask import Ask, statement
-import json, logging, os, urllib2
+import os, random, urllib2
 
 app = Flask(__name__)
 ask = Ask(app, '/')
@@ -10,24 +10,20 @@ ask = Ask(app, '/')
 baseurl = 'https://secure.penguinsinabox.com/speakerpower'
 username = 'alexa'
 password = os.environ['password']
+responses = ['ok', 'alright', 'sure', 'done']
 
 @ask.intent('TurnOnIntent')
 def off():
-    data = request.data
-    parsed_data = json.loads(data)
     request('/on')
-    return statement('Ok')
+    return statement(random.choice(responses))
 
 @ask.intent('TurnOffIntent')
 def off():
-    data = request.data
-    parsed_data = json.loads(data)
     request('/off')
-    return statement('Ok')
+    return statement(random.choice(responses))
 
 def request(suffix):
     password_mgr = urllib2.HTTPPasswordMgrWithDefaultRealm()
-    baseurl = os.environ['baseurl']
     password_mgr.add_password(None, baseurl, username, password)
     handler = urllib2.HTTPBasicAuthHandler(password_mgr)
     opener = urllib2.build_opener(handler)
