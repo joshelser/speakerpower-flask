@@ -5,6 +5,7 @@ from flask_ask import Ask, statement
 import os, random, urllib2
 
 app = Flask(__name__)
+app.config['ASK_APPLICATION_ID'] = 'amzn1.ask.skill.0fb55066-1cb6-410c-92ef-5e78bf60b0fe'
 ask = Ask(app, '/')
 
 baseurl = 'https://secure.penguinsinabox.com/speakerpower'
