@@ -8,7 +8,7 @@
       xmlHttp.open("GET", url, false);
       xmlHttp.send(null);
       var resp = xmlHttp.responseText;
-      set_state('On');
+      set_status('On');
       return resp;
     }
     function off() {
@@ -17,29 +17,73 @@
       xmlHttp.open("GET", url, false);
       xmlHttp.send(null);
       var resp = xmlHttp.responseText;
-      set_state('Off');
+      set_status('Off');
       return resp;
     }
-    function state() {
+    function status() {
       var xmlHttp = new XMLHttpRequest();
       var url = window.location.href + '/state';
       xmlHttp.open("GET", url, false);
       xmlHttp.send(null);
       return xmlHttp.responseText;
     }
-    function set_state(text) {
-      var state_span = document.getElementById("state");
-      state_span.textContent = text;
+    function set_status(text) {
+      var status_span = document.getElementById("status");
+      status_span.textContent = text;
     }
     window.onload = function() {
-      var stateText = state();
-      set_state(stateText);
+      var statusText = status();
+      set_status(statusText);
     }
 		</script>
+    <style>
+      /* Mobile */
+      @media screen and (max-width: 1024px) {
+        #wrapper {
+          margin: auto;
+          padding-left: 5%;
+          padding-right: 5%;
+        }
+        #state {
+          height: 5%;
+        }
+        #on {
+          height: 35%;
+          padding-bottom: 10%;
+        }
+        #off {
+          height: 35%;
+        }
+        #wrapper p {
+          text-align: center;
+          width: 100%;
+        }
+        #wrapper p button, #wrapper p span {
+          width: 100%;
+          height: 100%;
+        }
+        #state {
+          font-size: 5em;
+        }
+        #wrapper p button {
+          font-size: 8em;
+        }
+        #wrapper p button {
+          display: block;
+        }
+        button {
+          border-radius: 16px;
+          background-color: #4bb7b7;
+          color: white;
+        }
+      }
+    </style>
 	</head>
 	<body>
-		<p>State: <span id="state">&nbsp;</span></p>
-		<p><button onclick="on()">On</button></p>
-		<p><button onclick="off()">Off</button></p>
+    <div id="wrapper">
+      <p id="state">State: <span id="status">&nbsp;</span></p>
+      <p id="on"><button onclick="on()">On</button></p>
+      <p id="off"><button onclick="off()">Off</button></p>
+    </div>
 	</body>
 </html>
